@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Edmonton civic palette — deep navy + amber accent */
+    --background: 220 18% 96%;
+    --foreground: 220 25% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+    --primary: 220 72% 25%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 220 25% 20%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 12% 50%;
+    --accent: 38 95% 48%;
+    --accent-foreground: 220 25% 12%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 14% 86%;
+    --input: 220 14% 86%;
+    --ring: 220 72% 25%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 28% 9%;
+    --foreground: 220 18% 90%;
+    --card: 222 24% 12%;
+    --card-foreground: 220 18% 90%;
+    --popover: 222 24% 12%;
+    --popover-foreground: 220 18% 90%;
+    --primary: 213 80% 58%;
+    --primary-foreground: 222 28% 9%;
+    --secondary: 222 20% 18%;
+    --secondary-foreground: 220 18% 80%;
+    --muted: 222 20% 18%;
+    --muted-foreground: 220 12% 55%;
+    --accent: 38 95% 58%;
+    --accent-foreground: 222 28% 9%;
+    --destructive: 0 63% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 20% 20%;
+    --input: 222 20% 20%;
+    --ring: 213 80% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Satoshi', 'Inter', sans-serif;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: 'Cabinet Grotesk', 'Inter', sans-serif;
+  }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: hsl(var(--background));
+  border-radius: 0.75rem;
+}
+.leaflet-control-attribution {
+  font-size: 10px !important;
+}
+
+/* Custom map tooltip */
+.nbhd-tooltip {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  pointer-events: none;
+}
+.dark .nbhd-tooltip {
+  background: hsl(222 24% 14%);
+  border-color: hsl(222 20% 24%);
+  color: hsl(220 18% 90%);
+}
+
+/* Heat scale colors */
+.heat-0 { fill: hsl(220 14% 92%); }
+.heat-1 { fill: hsl(213 40% 75%); }
+.heat-2 { fill: hsl(213 55% 60%); }
+.heat-3 { fill: hsl(213 70% 48%); }
+.heat-4 { fill: hsl(30 85% 55%); }
+.heat-5 { fill: hsl(20 90% 48%); }
+
+.dark .heat-0 { fill: hsl(222 20% 18%); }
+.dark .heat-1 { fill: hsl(213 35% 28%); }
+.dark .heat-2 { fill: hsl(213 50% 38%); }
+.dark .heat-3 { fill: hsl(213 65% 50%); }
+.dark .heat-4 { fill: hsl(30 80% 48%); }
+.dark .heat-5 { fill: hsl(20 88% 55%); }
+
+/* Animated pulse on stat change */
+@keyframes pulse-in {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.stat-pulse {
+  animation: pulse-in 0.4s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 3px; }
